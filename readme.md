@@ -5,7 +5,7 @@ Mercury Marketplace
 
 ### Team Roles
 - Rami - 
-- Paapa -
+- Paapa - Fullstack Development Team Member
 - Mohamed - Frontend Development Team Member 
 - Sarthak -
 
