@@ -32,7 +32,7 @@ For students who are in need of affordable and fairly priced school supplies. Me
 ## Checklist
 - [x] Repository
 - [ ] Configuration Management 
-- [ ] Configure Master Branch so that there are some branch protections
+- [x] Configure Master Branch so that there are some branch protections
 - [x] Project management tool (i.e. tools like Jira or Trello or any other project management tools)
 
 - [x] Select a team name
@@ -40,7 +40,7 @@ For students who are in need of affordable and fairly priced school supplies. Me
 - [x] Determine programming languages, frameworks, technologies
 - [x] Describe your solution to the challenge statement (needs to be edited)
 - [x] Develop a project vision using the Geoffry Moore Template in Chapter 1 of the textbook
-- [ ] Develop a risk management plan using the risk management process
+- [x] Develop a risk management plan using the risk management process
 
 ## Risk Assessment
 | Risk                  | Probability | Effect | Category |
