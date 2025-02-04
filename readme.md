@@ -6,7 +6,7 @@ Mercury Marketplace
 ### Team Roles
 - Rami - 
 - Paapa -
-- Mohamed -
+- Mohamed - Frontend Development Team Member 
 - Sarthak -
 
 (Product Manager, Scrum Master, Development Team Member, Development Team Member, Frontend, Backend, Fullstack?) these were on the project page im not sure what u guys want to do
