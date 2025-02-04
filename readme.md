@@ -52,7 +52,7 @@ For students who are in need of affordable and fairly priced school supplies. Me
 | Competition from Other Platforms | Medium | Moderate | Serious |
 
 
-## 3. Risk Management Strategies  
+## Risk Management Strategies  
 | Risk                  | Management Strategy |
 |----------------------|-----------------------------------------------------|
 | Security Vulnerabilities | Implement secure authentication (OAuth, university email verification) |
