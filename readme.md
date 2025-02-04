@@ -41,3 +41,24 @@ For students who are in need of affordable and fairly priced school supplies. Me
 - [x] Describe your solution to the challenge statement (needs to be edited)
 - [x] Develop a project vision using the Geoffry Moore Template in Chapter 1 of the textbook
 - [ ] Develop a risk management plan using the risk management process
+
+## Risk Assessment
+| Risk                  | Probability | Effect | Category |
+|----------------------|-------------|--------|------------|
+| Security Vulnerabilities | High    | Catastrophic   | Critical      |
+| Database Failures    | Medium      | Serious   | Moderate       |
+| Missed Deadlines    | Low      | Moderate   | Low       |
+| Trust & Safety Concerns | High    | Serious   | Moderate       |
+| Competition from Other Platforms | Medium | Moderate | Serious |
+
+
+## 3. Risk Management Strategies  
+| Risk                  | Management Strategy |
+|----------------------|-----------------------------------------------------|
+| Security Vulnerabilities | Implement secure authentication (OAuth, university email verification) |
+| Database Failures    | Regular backups and query optimization. |
+| Missed Deadlines    | Use Agile methodology, and track progress with Jira. |
+| Trust & Safety Concerns | Introduce seller verification, buyer-seller reviews, and dispute resolution. |
+| Competition from Other Platforms | Focus on unique student-centric features, such as tailored listings. |
+
+
