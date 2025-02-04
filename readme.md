@@ -12,9 +12,9 @@ Mercury Marketplace
 (Product Manager, Scrum Master, Development Team Member, Development Team Member, Frontend, Backend, Fullstack?) these were on the project page im not sure what u guys want to do
 
 ### Project Layout
-Programming language - Javascript
-Frameworks - React & Express
-Technologies - MongoDB
+- Programming language - Javascript
+- Frameworks - React & Express
+- Technologies - MongoDB
 feel free to add or change
 
 ### Project Management Tool
@@ -31,7 +31,7 @@ For students who are in need of affordable and fairly priced school supplies. Me
 
 ## Checklist
 - [x] Repository
-- [ ] Configuration Management 
+- [x] Configuration Management 
 - [x] Configure Master Branch so that there are some branch protections
 - [x] Project management tool (i.e. tools like Jira or Trello or any other project management tools)
 
