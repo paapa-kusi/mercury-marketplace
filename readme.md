@@ -1,5 +1,7 @@
 # Project Proposal
 
+Submission Doc Link: https://docs.google.com/document/d/1CNvqdOiWjJ28FTlMsj84rHj2y7O4D4OVDswY1FuP-Vg/edit?usp=sharing
+
 ### Team Name 
 Mercury Marketplace
 
