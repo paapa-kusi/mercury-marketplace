@@ -3,19 +3,21 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 
 const UserSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   role: {
     type: String,
     required: true,
+    enum: ["Student", "Professor"],
     default: "Student",
   },
   university: {
-    type: String,
-    required: true,
-    // auth api handler necessary here?
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "University",
   },
+  listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
 });
 
 // temporary auth should be passed over to Auth0
