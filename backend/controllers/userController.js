@@ -10,7 +10,9 @@ const signupUser = async (req, res) => {
       role,
       university,
     });
-    res.json({ message: `User ${user.username} successfully created` });
+    res
+      .status(200)
+      .json({ message: `User ${user.username} successfully created` });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

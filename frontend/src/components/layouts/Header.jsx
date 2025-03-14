@@ -1,42 +1,39 @@
 import React from "react";
-
+import { Navbar } from "./Navbar";
+import MobileNavbar from "./MobileNavbar";
 const Header = () => {
   return (
-    <div className="min-h-[96px] flex justify-between text-[#F0EBD8]">
-      <div className="LeftContainer flex justify-center items-center gap-x-5">
-        <h1 className="text-3xl font-bold">
-          <span className="text-[#1D2D44]">Mercury</span> Marketplace
-        </h1>
-        <nav className="flex gap-x-5">
-          <button className="iconButton">
-            <i className="fa-solid fa-store"></i>
-            <span className="tooltip">Shop</span>
-          </button>
-          <button className="iconButton">
-            <i className="fa-solid fa-school"></i>
-            <span className="tooltip">University</span>
-          </button>
-          <button className="iconButton">
-            <i className="fa-solid fa-list"></i>
-            <span className="tooltip">List</span>
-          </button>
-          <button className="iconButton">
-            <i className="fa-solid fa-circle-info"></i>
-            <span className="tooltip">About</span>
-          </button>
-        </nav>
+    <>
+      {/* desktop navbar */}
+
+      <div className="min-h-[96px] w-full flex justify-center text-black border-b-1 bg-[#1B263B]">
+        <div className="LeftContainer w-[1360px] hidden lg:flex justify-between items-center px-5 text-[#e0e1dd]">
+          <div className="flex gap-x-4">
+            <h1 className="text-3xl font-bold">
+              Mercury
+              <br />
+              Marketplace
+            </h1>
+            <Navbar />
+          </div>
+          <div className="RightContainer hidden md:flex justify-center items-center gap-x-5">
+            <button className="iconButton">
+              <span className="tooltip text-md">Sign In</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="flex min-h-[96px] max-w-[1200px] lg:hidden w-full justify-between items-center px-5 bg-[#1B263B]">
+          <h1 className="text-3xl font-bold text-[#e0e1dd]">
+            Mercury
+            <br />
+            Marketplace
+          </h1>
+          <MobileNavbar />
+        </div>
       </div>
-      <div className="RightContainer flex justify-center items-center gap-x-5">
-        <button className="iconButton">
-          <i className="fa-solid fa-arrow-right-to-bracket"></i>
-          <span className="tooltip">Sign In</span>
-        </button>
-        <button className="iconButton">
-          <i className="fa-solid fa-question"></i>
-          <span className="tooltip">Help</span>
-        </button>
-      </div>
-    </div>
+      {/* mobile navbar */}
+    </>
   );
 };
 

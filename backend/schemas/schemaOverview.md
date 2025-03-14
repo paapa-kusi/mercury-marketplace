@@ -1,4 +1,4 @@
-The database is split into three schemas: one representing users (professors/students), one representing listings, and one representing universities. All of this is probably going to end up modified down the line
+The database is split into three schemas: one representing users (professors/students), one representing listings, and one representing universities. All of this is probably going to end up modified down the line.
 
 # Users (userModel.js)
 

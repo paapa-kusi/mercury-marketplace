@@ -4,12 +4,19 @@ import Footer from "./Footer.jsx";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex flex-1 w-full h-screen justify-center">
-      <div className="w-full lg:min-h-screen max-w-[1200px] flex flex-col px-5">
-        <Header />
-        {children}
-        <Footer />
-      </div>
+    <div className="min-h-screen flex flex-col ">
+      {/* Header */}
+      <Header />
+
+      {/* Main content */}
+      <main className="flex-1">
+        <div className="max-w-[1360px] mx-auto px-4 py-8 bg-white">
+          {children}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
