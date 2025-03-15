@@ -127,3 +127,37 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marqueeVertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.animate-marquee-vertical {
+  animation: marqueeVertical var(--duration) linear infinite;
+}
+
+.reverse-animation {
+  animation-direction: reverse;
+}
+
+.group-hover\:animation-play-state-paused:hover {
+  animation-play-state: paused !important;
+}

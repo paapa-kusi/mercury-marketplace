@@ -10,9 +10,7 @@ const Layout = ({ children }) => {
 
       {/* Main content */}
       <main className="flex-1">
-        <div className="max-w-[1360px] mx-auto px-4 py-8 bg-white">
-          {children}
-        </div>
+        <div className="max-w-[1360px] mx-auto px-4 py-8">{children}</div>
       </main>
 
       {/* Footer */}
