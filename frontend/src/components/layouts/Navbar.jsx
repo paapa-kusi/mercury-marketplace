@@ -16,36 +16,36 @@ import {
 
 const components = [
   {
-    title: "Alert Dialog",
+    title: "Create a Listing",
     href: "/docs/primitives/alert-dialog",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
-    title: "Hover Card",
+    title: "How to List",
     href: "/docs/primitives/hover-card",
     description:
       "For sighted users to preview content available behind a link.",
   },
   {
-    title: "Progress",
+    title: "Alternative Shipping",
     href: "/docs/primitives/progress",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
   {
-    title: "Scroll-area",
+    title: "Something 3",
     href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    description: "Lorem Ipsum",
   },
   {
-    title: "Tabs",
+    title: "Something 1",
     href: "/docs/primitives/tabs",
     description:
       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
   },
   {
-    title: "Tooltip",
+    title: "Something 2",
     href: "/docs/primitives/tooltip",
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
@@ -66,7 +66,7 @@ export function Navbar() {
                 <NavigationMenuLink asChild>
                   <a
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
+                    href="/store#featured"
                   >
                     <div className="mb-0 mt-4 text-2xl font-medium">
                       Featured Listings
@@ -81,14 +81,14 @@ export function Navbar() {
                 Visit the catalog of currently listing materials
               </ListItem>
               <ListItem
-                href="/store/university"
+                href="/store/universities"
                 title="Shop Universities"
                 className="h-[100px]"
               >
                 View listings by their associated university
               </ListItem>
               <ListItem
-                href="/store/professor"
+                href="/store/professors"
                 title="Shop Professors"
                 className="h-[100px]"
               >

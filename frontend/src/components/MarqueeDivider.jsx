@@ -6,6 +6,7 @@ const firstRow = universities.slice(0, universities.length / 2);
 const secondRow = universities.slice(universities.length / 2);
 
 const UniversityCard = ({ img, name }) => {
+  //TODO: maybe make this smaller or responsive?
   return (
     <figure
       className={cn(
