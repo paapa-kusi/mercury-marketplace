@@ -4,7 +4,8 @@ import Footer from "./Footer.jsx";
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col ">
+    // layout applied manually here
+    <div className="min-h-screen flex flex-col">
       {/* Header */}
       <Header />
 
