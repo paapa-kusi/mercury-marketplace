@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, props }) => {
   return (
     // layout applied manually here
     <div className="min-h-screen flex flex-col">
@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
 
       {/* Main content */}
       <main className="flex-1">
-        <div className="max-w-[1360px] mx-auto">{children}</div>
+        <div className={props}>{children}</div>
       </main>
 
       {/* Footer */}

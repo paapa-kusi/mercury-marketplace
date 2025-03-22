@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import HomeInfo from "@/components/HomeInfo";
 import Footer from "@/components/layouts/Footer";
 
-export default function HomePage() { 
+export default function HomePage() {
   return (
     <>
       <Header />
@@ -14,10 +14,8 @@ export default function HomePage() {
           <div className="max-w-[1360px] mx-auto px-4">
             <MarqueeDivider />
             <HomeInfo />
-            
-
-            <Footer />
           </div>
+          <Footer />
         </div>
       </div>
     </>
