@@ -35,7 +35,7 @@ const UniversityCard = ({ img, name }) => {
 
 export default function MarqueeDivider() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden inset-shadow-lg inset-shadow-black">
+    <div id="universities" className="relative flex w-full flex-col items-center justify-center overflow-hidden inset-shadow-lg inset-shadow-black">
       <h1 className="text-4xl my-10">Trusted by hundreds of universities</h1>
       <Marquee pauseOnHover className="[--duration:40s]">
         {firstRow.map((review, index) => (

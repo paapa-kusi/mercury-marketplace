@@ -5,7 +5,12 @@ import Image from "next/image";
 import React from "react";
 
 function scrollIcon() {
-  document.getElementById("about1").scrollIntoView({ behavior: "smooth" });
+  const element = document.getElementById("universities");
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  } else {
+    console.warn("Scroll target element 'universities' not found");
+  }
 }
 
 const Hero = () => {

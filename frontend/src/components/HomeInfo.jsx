@@ -3,7 +3,7 @@ import React from 'react'
 export default function HomeInfo() {
   return (
     <div>
-        <section className="py-20">
+        <section id="about1" className="py-20">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h2 className="text-4xl font-bold mb-6">The Core Problem</h2>
