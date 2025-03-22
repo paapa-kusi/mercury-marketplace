@@ -13,7 +13,7 @@ export default function HomePage() {
           <Hero />
           <div className="max-w-[1360px] mx-auto px-4">
             <MarqueeDivider />
-          <HomeInfo />
+            <HomeInfo />
             
 
             <Footer />

@@ -4,26 +4,17 @@ export default function HomeInfo() {
   return (
     <div>
         <section id="about1" className="py-20">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="text-4xl font-bold mb-6">The Core Problem</h2>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
-                    Many college students require expensive and niche school supplies for their various classes. 
-                    These items are often cost-prohibitive, underutilized, and lack a dedicated marketplace.
-                  </p>
-                  <ul className="list-disc list-inside text-lg text-gray-600 dark:text-gray-300 space-y-2">
-                    <li>Cost Prohibitive: Retail prices are often too high for students on a budget</li>
-                    <li>Underutilized: Supplies are used only a few times and gather dust</li>
-                    <li>Lack a Dedicated Marketplace: Existing platforms don't target unique university needs</li>
-                  </ul>
-                </div>
-                <div className="h-[400px]">
-                  <img
-                    src="/assets/online-shopping.png"
-                    alt="Online Shopping Icon"
-                    className="rounded-lg object-contain w-full h-full p-4"
-                  />
-                </div>
+              <div className="max-w-3xl mx-auto text-center">
+                <h2 className="text-4xl font-bold mb-6">The Core Problem</h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                  Many college students require expensive and niche school supplies for their various classes. 
+                  These items are often cost-prohibitive, underutilized, and lack a dedicated marketplace.
+                </p>
+                <ul className="list-none text-lg text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Cost Prohibitive: Retail prices are often too high for students on a budget</li>
+                  <li>Underutilized: Supplies are used only a few times and gather dust</li>
+                  <li>Lack a Dedicated Marketplace: Existing platforms don't target unique university needs</li>
+                </ul>
               </div>
             </section>
 
