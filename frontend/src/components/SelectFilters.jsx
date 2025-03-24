@@ -10,7 +10,6 @@ const SelectFilters = ({
 }) => {
   return (
     <>
-      {/* TODO: add sheet for small screens */}
       <select
         value={selectedUniversity}
         onChange={(e) => setSelectedUniversity(e.target.value)}
@@ -18,8 +17,8 @@ const SelectFilters = ({
       >
         <option value="">All Universities</option>
         {universities.map((university) => (
-          <option key={university} value={university}>
-            {university}
+          <option key={university.name} value={university.name}>
+            {university.name}
           </option>
         ))}
       </select>

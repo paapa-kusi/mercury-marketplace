@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { featuredItems, categories, universities } from "@/utils/mockData";
+import { featuredItems, categories } from "@/utils/mockData";
+import { universities } from "@/utils/Universities";
 import StoreCard from "@/components/StoreCard";
 import CategoryCard from "@/components/CategoryCard";
 import SelectFilters from "@/components/SelectFilters";

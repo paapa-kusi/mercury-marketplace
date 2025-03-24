@@ -17,39 +17,22 @@ import {
 const components = [
   {
     title: "Create a Listing",
-    href: "/docs/primitives/alert-dialog",
+    href: "/list/create",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "Post your textbooks, course materials, or other academic items for sale.",
   },
   {
-    title: "How to List",
-    href: "/docs/primitives/hover-card",
+    title: "Manage Your Listings",
+    href: "/list/manage",
     description:
-      "For sighted users to preview content available behind a link.",
+      "View, edit, or remove your active listings and track their status.",
   },
   {
-    title: "Alternative Shipping",
-    href: "/docs/primitives/progress",
+    title: "FAQs",
+    href: "/list/faqs",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Something 3",
-    href: "/docs/primitives/scroll-area",
-    description: "Lorem Ipsum",
-  },
-  {
-    title: "Something 1",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Something 2",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
+      "Find answers to common questions about creating and managing your listings.",
+  }
 ];
 
 export function Navbar() {
@@ -102,7 +85,7 @@ export function Navbar() {
             Listings
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-3xl xl:w-4xl h-[350px] gap-3 p-4 md:grid-cols-2">
+            <ul className="grid w-3xl xl:w-4xl h-[350px] gap-3 p-4 md:grid-cols-1">
               {components.map((component) => (
                 <ListItem
                   key={component.title}
