@@ -26,9 +26,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/signin" className="text-[#e0e1dd] hover:text-white transition-colors">
-              Sign In
-            </Link>
+            {/*<Link href="/signin" className="text-[#e0e1dd] hover:text-white transition-colors">*/}
+            {/*  Sign In*/}
+            {/*</Link>*/}
             <Link href="/help" className="text-[#e0e1dd] hover:text-white transition-colors">
               Help
             </Link>

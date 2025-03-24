@@ -2,6 +2,14 @@ import React from "react";
 import { Navbar } from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import Link from "next/link";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
+
 const Header = () => {
   return (
     <>
@@ -17,10 +25,22 @@ const Header = () => {
             </Link>
             <Navbar />
           </div>
-          <div className="RightContainer hidden md:flex justify-center items-center gap-x-5">
-            <button className="iconButton">
-              <span className="tooltip text-md">Sign In</span>
-            </button>
+          <div className="RightContainer hidden md:flex justify-center items-center gap-x-5 ">
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="iconButton">
+                  <span className="tooltip text-md hover:text-white transition-colors">Sign In</span>
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="iconButton">
+                  <span className="tooltip text-md hover:text-white transition-colors">Sign Up</span>
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
         </div>
 
