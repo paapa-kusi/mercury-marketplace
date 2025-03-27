@@ -32,7 +32,7 @@ const components = [
     href: "/list/faqs",
     description:
       "Find answers to common questions about creating and managing your listings.",
-  }
+  },
 ];
 
 export function Navbar() {

@@ -10,6 +10,7 @@ import { Separator } from "../ui/separator";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 
+// TODO: update nav content, use dropdowns
 const MobileNavbar = () => {
   return (
     <Sheet>

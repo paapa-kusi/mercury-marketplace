@@ -1,10 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { ShoppingBasket, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 const StoreCard = ({ item }) => {
   return (
-    <div className="flex flex-col pt-6 lg:flex-row">
+    <a
+      className="flex flex-col lg:flex-row hover:cursor-pointer"
+      href={`store/${item.id}`}
+    >
       <div className="relative w-50 h-50 self-center">
         <Image
           src={item.image}
@@ -27,7 +30,7 @@ const StoreCard = ({ item }) => {
           </button>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
