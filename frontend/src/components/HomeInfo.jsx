@@ -38,7 +38,7 @@ export default function HomeInfo() {
               making course materials more accessible while saving money.
             </p>
           </div>
-          <div className="p-6  dark:bg-gray-800 rounded-xl shadow-lg">
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
             <h3 className="text-xl font-semibold mb-4">Professor's Story</h3>
             <p className="text-gray-600 dark:text-gray-300">
               Professor Taylor teaches engineering and wants to make course
@@ -60,21 +60,21 @@ export default function HomeInfo() {
               and enrollment verification.
             </p>
           </div>
-          <div className="p-6= dark:bg-gray-800 rounded-xl shadow-lg">
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
             <h3 className="text-xl font-semibold mb-4">Safe & Trustworthy</h3>
             <p className="text-gray-600 dark:text-gray-300">
               .edu email verification, reviews, ratings, and secure payment
               processing.
             </p>
           </div>
-          <div className="p-6= dark:bg-gray-800 rounded-xl shadow-lg">
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
             <h3 className="text-xl font-semibold mb-4">Cost Efficient</h3>
             <p className="text-gray-600 dark:text-gray-300">
               Reuse supplies, reduce waste, and save money through
               student-to-student transactions.
             </p>
           </div>
-          <div className="p-6 dark:bg-gray-800 rounded-xl shadow-lg">
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
             <h3 className="text-xl font-semibold mb-4">Easy Access</h3>
             <p className="text-gray-600 dark:text-gray-300">
               Local pickup options and streamlined shipping for convenient
