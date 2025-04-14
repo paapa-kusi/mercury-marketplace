@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Navbar } from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
@@ -27,17 +29,25 @@ const Header = () => {
           </div>
           <div className="RightContainer hidden md:flex justify-center items-center gap-x-5 ">
             <SignedOut>
-              <SignInButton mode="modal">
-                <button className="iconButton">
-                  <span className="tooltip text-md hover:text-white transition-colors">Sign In</span>
-                </button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <button className="iconButton">
-                  <span className="tooltip text-md hover:text-white transition-colors">Sign Up</span>
-                </button>
-              </SignUpButton>
+              <div className="flex gap-x-3">
+                <Link href="/sign-in">
+                  <button className="iconButton">
+                    <span className="tooltip text-md hover:text-white transition-colors">
+                      Sign In
+                    </span>
+                  </button>
+                </Link>
+
+                <Link href="/sign-up">
+                  <button className="iconButton">
+                    <span className="tooltip text-md hover:text-white transition-colors">
+                      Sign Up
+                    </span>
+                  </button>
+                </Link>
+              </div>
             </SignedOut>
+
             <SignedIn>
               <UserButton />
             </SignedIn>

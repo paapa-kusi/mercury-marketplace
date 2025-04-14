@@ -3,19 +3,19 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 
 const UserSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  clerkId: { type: String, unique: true },
   role: {
     type: String,
-    required: true,
     enum: ["Student", "Professor"],
     default: "Student",
   },
   university: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "University",
+    default: null,
   },
   listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
 });
