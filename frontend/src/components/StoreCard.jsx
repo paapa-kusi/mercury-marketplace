@@ -24,7 +24,7 @@ const StoreCard = ({ item }) => {
           <div className="col-span-2 xl:col-span-1 inline-block text-center bg-yellow-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold">
             ${item.price}
           </div>
-          <button className="col-span-3 xl:col-span-4 flex justify-center gap-3 bg-orange-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold">
+          <button className="col-span-3 xl:col-span-4 flex justify-center gap-3 bg-orange-400 text-black px-4 py-2 rounded-full shadow-md text-lg cursor-pointer font-semibold">
             <ShoppingCart />
             Add to cart
           </button>

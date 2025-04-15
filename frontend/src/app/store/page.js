@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { featuredItems, categories } from "@/utils/mockData";
 import { universities } from "@/utils/Universities";
@@ -11,6 +11,28 @@ export default function StorePage() {
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [featuredItems, setFeaturedItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getAllListings = async () => {
+      const listings = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/get-all-listings`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const res = await listings.json();
+      setFeaturedItems(res);
+      setLoading(false);
+    };
+
+    getAllListings();
+  }, [featuredItems, loading]);
 
   const filteredItems = featuredItems.filter((item) => {
     const matchesUniversity =
@@ -71,14 +93,18 @@ export default function StorePage() {
             />
 
             <div className="space-y-6 md:grid grid-cols-2 gap-x-8 lg:block">
-              {filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-                >
-                  <StoreCard item={item} />
-                </div>
-              ))}
+              {loading ? (
+                <h1>Loading...</h1>
+              ) : (
+                filteredItems.map((item) => (
+                  <div
+                    key={item._id}
+                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                  >
+                    <StoreCard item={item} />
+                  </div>
+                ))
+              )}
             </div>
           </div>
 

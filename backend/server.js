@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import userRouter from "./routes/userRoutes.js";
+import listingRouter from "./routes/listingRoutes.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(
 app.use(express.json());
 
 app.use("/api/user", userRouter);
+app.use("/api/listing", listingRouter);
 
 // mongo connection
 const uri = process.env.MONGO_URI;

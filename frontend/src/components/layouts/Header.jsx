@@ -4,13 +4,7 @@ import React from "react";
 import { Navbar } from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import Link from "next/link";
-import {
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   return (
@@ -49,7 +43,7 @@ const Header = () => {
             </SignedOut>
 
             <SignedIn>
-              <UserButton />
+              <UserButton showName />
             </SignedIn>
           </div>
         </div>
