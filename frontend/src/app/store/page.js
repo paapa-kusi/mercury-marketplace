@@ -7,6 +7,7 @@ import StoreCard from "@/components/StoreCard";
 import CategoryCard from "@/components/CategoryCard";
 import SelectFilters from "@/components/SelectFilters";
 
+// TODO: fix filtration
 export default function StorePage() {
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");

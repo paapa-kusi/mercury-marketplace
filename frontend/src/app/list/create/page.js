@@ -7,6 +7,7 @@ import Header from "@/components/layouts/Header";
 import { universities } from "@/utils/Universities";
 import { useUser } from "@clerk/nextjs";
 
+// TODO: FIX CATEGORIES NOT WORKING
 export default function CreateListingPage() {
   const { user, isLoaded } = useUser();
   const router = useRouter();
