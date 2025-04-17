@@ -33,13 +33,12 @@ function ItemPage({ params }) {
       if (!currItem) return;
 
       const userRes = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/get-user`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/get-user?clerkId=${currItem.clerkId}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ clerkId: currItem.clerkId }),
         }
       );
 

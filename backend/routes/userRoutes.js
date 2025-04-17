@@ -13,7 +13,7 @@ const userRouter = express.Router();
 userRouter.post("/signup", signupUser);
 userRouter.post("/complete-profile", completeProfile);
 userRouter.get("/get-profile", getProfile);
-userRouter.post("/get-user", getUser);
+userRouter.get("/get-user", getUser);
 userRouter.get("/universities", getAllUniversities);
 userRouter.post("/webhook", clerkWebhook);
 

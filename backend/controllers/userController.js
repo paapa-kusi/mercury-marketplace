@@ -20,7 +20,7 @@ const signupUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const { clerkId } = req.body;
+  const { clerkId } = req.query;
   try {
     const user = await User.findOne({ clerkId });
     if (!user) {

@@ -15,7 +15,7 @@ export default function CompleteProfilePage() {
   useEffect(() => {
     const fetchUniversities = async () => {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/universities`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/university/get-all-universities`
       );
       const data = await res.json();
       setUniversities(data);
