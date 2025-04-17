@@ -6,6 +6,7 @@ const UniversitySchema = new mongoose.Schema({
   description: { type: String, required: true },
   students: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   professors: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  logo: { type: String, required: true },
   universityListings: [
     { type: mongoose.Schema.Types.ObjectId, ref: "Listing" },
   ],

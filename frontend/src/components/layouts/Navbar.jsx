@@ -100,7 +100,7 @@ export function Navbar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/university" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               University
             </NavigationMenuLink>

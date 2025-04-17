@@ -29,18 +29,16 @@ export default function ManageListingsPage() {
       if (!isLoaded || !user) return;
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/get-listings`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/get-listings?clerkId=${user.id}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ clerkId: user.id }),
         }
       );
 
       const data = await res.json();
-      console.log(data);
       setListings(data);
       setLoading(false);
     };

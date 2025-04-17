@@ -1,7 +1,7 @@
 import Listing from "../schemas/listingModel.js";
 
 const createListing = async (req, res) => {
-  const { clerkId, image, title, description, price, cateogry, date, status } =
+  const { clerkId, image, title, description, price, category, date, status } =
     req.body;
   console.log(req.body);
   try {
@@ -11,7 +11,7 @@ const createListing = async (req, res) => {
       title,
       description,
       price,
-      cateogry,
+      category,
       date,
       status,
     });
@@ -24,7 +24,7 @@ const createListing = async (req, res) => {
 };
 
 const getListings = async (req, res) => {
-  const { clerkId } = req.body;
+  const { clerkId } = req.query;
   try {
     const listings = await Listing.find({ clerkId });
 

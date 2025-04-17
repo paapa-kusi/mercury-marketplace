@@ -7,7 +7,7 @@ import {
 const listingRouter = express.Router();
 
 listingRouter.post("/create-listing", createListing);
-listingRouter.post("/get-listings", getListings);
+listingRouter.get("/get-listings", getListings);
 listingRouter.get("/get-all-listings", getAllListings);
 
 export default listingRouter;

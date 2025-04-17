@@ -164,10 +164,10 @@ export default function CreateListingPage() {
                 required
               >
                 <option value="">Select a category</option>
-                <option value="course-materials">Course Materials</option>
-                <option value="electronics">Electronics</option>
-                <option value="dorm-supplies">Dorm Supplies</option>
-                <option value="miscellaneous">Miscellaneous</option>
+                <option value="Course Materials">Course Materials</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Dorm Supplies">Dorm Supplies</option>
+                <option value="Miscellaneous">Miscellaneous</option>
               </select>
             </div>
 

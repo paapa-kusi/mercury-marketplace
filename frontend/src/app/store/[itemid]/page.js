@@ -1,10 +1,81 @@
-import { featuredItems } from "../../../utils/mockData";
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Listing404 } from "@/components/Listing404";
 
-async function ItemPage({ params }) {
-  const { itemid } = await params;
-  const item = featuredItems.find((i) => i.id.toString() === itemid);
+function ItemPage({ params }) {
+  const [item, setItem] = useState([]);
+  const [seller, setSeller] = useState("");
+  const [university, setUniversity] = useState("");
+
+  useEffect(() => {
+    const getListings = async () => {
+      const listings = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/get-all-listings`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const res = await listings.json();
+      const { itemid } = params;
+      const foundItem = res.find((i) => i._id.toString() === itemid);
+      setItem(foundItem);
+      return foundItem;
+    };
+
+    const getUser = async () => {
+      const currItem = await getListings();
+      if (!currItem) return;
+
+      const userRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/get-user`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ clerkId: currItem.clerkId }),
+        }
+      );
+
+      const user = await userRes.json();
+      setSeller(user);
+      return user;
+    };
+
+    const getItemAndUser = async () => {
+      const user = await getUser();
+      console.log(user.university);
+
+      const universityRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/university/get-university?universityId=${user.university}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!universityRes.ok) {
+        const errText = await universityRes.text();
+        console.error(
+          "University fetch failed:",
+          universityRes.status,
+          errText
+        );
+        return;
+      }
+      const university = await universityRes.json();
+      setUniversity(university);
+    };
+
+    getItemAndUser();
+  }, [params]);
 
   if (!item) {
     return <Listing404 />;
@@ -29,7 +100,7 @@ async function ItemPage({ params }) {
           <div className="mb-8">
             <h1 className="text-4xl font-medium pt-5 pb-1">{item.title}</h1>
             <p className="text-gray-600">
-              Sold by: {item.seller}, {item.university}
+              Sold by: {seller.username}, {university._name}
             </p>
             <h3 className="text-gray-500">{item.date}</h3>
           </div>
