@@ -1,10 +1,14 @@
 import React from "react";
 import Image from "next/image";
 
-// TODO: responsiveness
-const UniversityCard = ({ university }) => {
+const UniversityCard = ({ university, selected, onClick }) => {
   return (
-    <div className="flex gap-x-4 w-full rounded-lg bg-white p-3 h-[150px] sm:min-h-[165px] md:h-[150px] shadow-lg">
+    <div
+      onClick={onClick}
+      className={`flex gap-x-4 w-full rounded-lg bg-white p-3 h-[150px] sm:min-h-[165px] md:h-[150px] shadow-lg border ${
+        selected ? "border-[#1B263B] border-[2px]" : "border-none"
+      }`}
+    >
       <div className="w-[40%]">
         <div className="relative h-full w-full max-w-xs">
           <Image
