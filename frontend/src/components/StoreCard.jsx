@@ -5,15 +5,15 @@ import { ShoppingCart } from "lucide-react";
 const StoreCard = ({ item }) => {
   return (
     <a
-      className="flex flex-col lg:flex-row hover:cursor-pointer"
+      className="flex flex-col pt-6 lg:pt-0 lg:flex-row hover:cursor-pointer"
       href={`store/${item._id}`}
     >
-      <div className="relative w-20 h-20 self-center">
+      <div className="relative w-48 h-48 self-center">
         <Image
           src={item.image}
           alt={item.title}
           fill
-          className="object-cover"
+          className="object-cover "
         />
       </div>
       <div className="p-6 flex-1">
