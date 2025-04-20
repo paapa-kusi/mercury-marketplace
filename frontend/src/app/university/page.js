@@ -12,6 +12,7 @@ export default function StorePage() {
   const [universities, setUniversities] = useState([]);
   const [userInfo, setUserInfo] = useState("");
   const [currentUniversity, setCurrentUniversity] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getAllUniversities = async () => {
@@ -48,15 +49,38 @@ export default function StorePage() {
       const data = await res.json();
       setUserInfo(data);
       for (const university of fetchedUniversities) {
-        console.log(university._id + " " + data.university);
         if (university._id === data.university) {
           setCurrentUniversity(university);
         }
       }
+      setLoading(false);
     };
 
     getUniversityData();
   }, [user]);
+
+  const updateUniversity = async (universityId) => {
+    await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/update-university`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clerkId: userInfo.clerkId,
+          university: universityId,
+        }),
+      }
+    );
+  };
+
+  const changeUniversity = async (u) => {
+    setLoading(true);
+    setCurrentUniversity(u);
+    await updateUniversity(u._id);
+    setLoading(false);
+  };
 
   return (
     <div>
@@ -68,12 +92,19 @@ export default function StorePage() {
                 <h2 className="text-start my-2 text-lg">
                   Your current selected university is:
                 </h2>
-                <div className="w-[500px]">
-                  <UniversityCard university={currentUniversity} />
-                </div>
+                {loading ? (
+                  <p className="text-4xl">Loading...</p>
+                ) : (
+                  <div className="w-[500px]">
+                    <UniversityCard university={currentUniversity} />
+                  </div>
+                )}
               </div>
             ) : (
-              <></>
+              <p>
+                You don't have a university selected! Choose your school from
+                the options below.
+              </p>
             )}
           </div>
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -86,7 +117,12 @@ export default function StorePage() {
           <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-4 w-full min-h-[400px] mb-16">
             {universities.length > 0 ? (
               universities.map((u) => (
-                <UniversityCard key={u._id} university={u} />
+                <UniversityCard
+                  key={u._id}
+                  university={u}
+                  selected={u === currentUniversity}
+                  onClick={() => changeUniversity(u)}
+                />
               ))
             ) : (
               <p>Loading...</p>
