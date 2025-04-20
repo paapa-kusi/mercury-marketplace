@@ -3,11 +3,15 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Listing404 } from "@/components/Listing404";
+import { useRouter } from "next/navigation";
+import { ShoppingCart } from "lucide-react";
 
 function ItemPage({ params }) {
   const [item, setItem] = useState([]);
   const [seller, setSeller] = useState("");
   const [university, setUniversity] = useState("");
+  const router = useRouter();
+  const { itemid } = use(params);
 
   useEffect(() => {
     const getListings = async () => {
@@ -22,7 +26,6 @@ function ItemPage({ params }) {
       );
 
       const res = await listings.json();
-      const { itemid } = params;
       const foundItem = res.find((i) => i._id.toString() === itemid);
       setItem(foundItem);
       return foundItem;
@@ -99,9 +102,12 @@ function ItemPage({ params }) {
           <div className="mb-8">
             <h1 className="text-4xl font-medium pt-5 pb-1">{item.title}</h1>
             <p className="text-gray-600">
-              Sold by: {seller.username}, {university._name}
+              Sold by: {seller.username}
+              {university ? `, ${university._name}` : "No university specified"}
             </p>
-            <h3 className="text-gray-500">{item.date}</h3>
+            <h3 className="text-gray-500">
+              {new Date(Date.parse(item.date)).toDateString()}
+            </h3>
           </div>
           <div>
             <p className="text-lg">{item.description}</p>
@@ -109,8 +115,8 @@ function ItemPage({ params }) {
               <div className="w-full col-span-3 lg:col-span-2 inline-block text-center bg-yellow-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold">
                 ${item.price}
               </div>
-              <button className="w-full col-span-5 lg:col-span-6 flex justify-center gap-3 bg-orange-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold">
-                {/* <ShoppingCart /> */}
+              <button className="w-full col-span-5 lg:col-span-6 flex justify-center gap-3 bg-orange-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold cursor-pointer">
+                <ShoppingCart />
                 Add to cart
               </button>{" "}
             </div>
