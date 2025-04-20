@@ -12,13 +12,20 @@ const SelectFilters = ({
     <>
       <select
         value={selectedUniversity}
-        onChange={(e) => setSelectedUniversity(e.target.value)}
-        className="w-full md:w-48 md:mr-3 px-4 py-2 mb-4 md:mb-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#778DA9]"
+        onChange={(e) => {
+          console.log(e.target.value);
+          setSelectedUniversity(e.target.value);
+        }}
+        className="w-full md:w-72 md:mr-3 px-4 py-2 mb-4 md:mb-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#778DA9]"
       >
         <option value="">All Universities</option>
         {universities.map((university) => (
-          <option key={university.name} value={university.name}>
-            {university.name}
+          <option
+            className="text-wrap"
+            key={university.name}
+            value={university._id}
+          >
+            {university._name}
           </option>
         ))}
       </select>
