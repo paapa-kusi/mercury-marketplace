@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { featuredItems, categories } from "@/utils/mockData";
-import { universities } from "@/utils/Universities";
+import { categories } from "@/utils/mockData";
 import StoreCard from "@/components/StoreCard";
 import CategoryCard from "@/components/CategoryCard";
 import SelectFilters from "@/components/SelectFilters";
 
 // TODO: fix filtration
 export default function StorePage() {
+  const [universities, setUniversities] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,8 +27,21 @@ export default function StorePage() {
         }
       );
 
-      const res = await listings.json();
-      setFeaturedItems(res);
+      const listingRes = await listings.json();
+
+      const universitiesInfo = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/university/get-all-universities`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const universitiesRes = await universitiesInfo.json();
+      setUniversities(universitiesRes);
+      setFeaturedItems(listingRes);
       setLoading(false);
     };
 
@@ -37,8 +50,7 @@ export default function StorePage() {
 
   const filteredItems = featuredItems.filter((item) => {
     const matchesUniversity =
-      !selectedUniversity ||
-      item.university.toLowerCase() === selectedUniversity.toLowerCase();
+      !selectedUniversity || item.universitySpecific === selectedUniversity;
     const matchesCategory =
       !selectedCategory || item.category === selectedCategory;
     const matchesSearch =
@@ -96,11 +108,13 @@ export default function StorePage() {
             <div className="space-y-6 md:grid grid-cols-2 gap-x-8 lg:block">
               {loading ? (
                 <h1>Loading...</h1>
+              ) : filteredItems.length === 0 ? (
+                <h1 className="text-xl font-semibold">No items found.</h1>
               ) : (
                 filteredItems.map((item) => (
                   <div
                     key={item._id}
-                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    className="bg-white sm:h-[400px] lg:h-full rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                   >
                     <StoreCard item={item} />
                   </div>
