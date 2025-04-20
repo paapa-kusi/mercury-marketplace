@@ -60,22 +60,15 @@ export function Navbar() {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/store" title="Storefront" className="h-[100px]">
+              <ListItem href="/store" title="Storefront" className="h-full">
                 Visit the catalog of currently listing materials
               </ListItem>
               <ListItem
                 href="/store/universities"
                 title="Shop Universities"
-                className="h-[100px]"
+                className="h-full"
               >
                 View listings by their associated university
-              </ListItem>
-              <ListItem
-                href="/store/professors"
-                title="Shop Professors"
-                className="h-[100px]"
-              >
-                Search for listings from specific professors
               </ListItem>
             </ul>
           </NavigationMenuContent>
