@@ -4,20 +4,20 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
-import { universities } from "@/utils/Universities";
 import { useUser } from "@clerk/nextjs";
 
-// TODO: FIX CATEGORIES NOT WORKING
+// TODO: redirect user to complete sign up if not done
 export default function CreateListingPage() {
   const { user, isLoaded } = useUser();
   const router = useRouter();
+  const [userInfo, setUserInfo] = useState("");
   const [formData, setFormData] = useState({
     clerkId: null,
     title: "",
     description: "",
     price: 0,
     category: "",
-    university: "",
+    universitySpecific: null,
     image: "",
     status: "Active",
     date: Date.now,
@@ -27,6 +27,18 @@ export default function CreateListingPage() {
     const fetchUser = async () => {
       if (!isLoaded || !user) return;
 
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/get-user?clerkId=${user.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await res.json();
+      setUserInfo(data);
       setFormData((prev) => ({
         ...prev,
         clerkId: user.id,
@@ -81,6 +93,13 @@ export default function CreateListingPage() {
     setFormData((prev) => ({
       ...prev,
       image: imageUrl,
+    }));
+  };
+
+  const handleUniversitySpecific = () => {
+    setFormData((prev) => ({
+      ...prev,
+      universitySpecific: userInfo.university,
     }));
   };
 
@@ -170,31 +189,6 @@ export default function CreateListingPage() {
                 <option value="Miscellaneous">Miscellaneous</option>
               </select>
             </div>
-
-            <div>
-              <label
-                for="university"
-                className="block text-sm font-medium text-gray-700"
-              >
-                University
-              </label>
-              <select
-                id="university"
-                name="university"
-                value={formData.university}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-[0_0px_10px_rgba(0,0,0,0.14)]  focus:border-[#1B263B] focus:ring-[#1B263B]"
-                required
-              >
-                <option value="">Select a university</option>
-                {universities.map((university) => (
-                  <option key={university.name} value={university.name}>
-                    {university.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             <div>
               <label
                 for="file-upload"
@@ -202,16 +196,30 @@ export default function CreateListingPage() {
               >
                 Images
               </label>
-              <input
-                type="file"
-                multiple
-                accept="image/*"
-                id="file-upload"
-                className="mt-1 block w-contain p-2 hover:bg-gray-400 rounded-md transition ease-in duration-200 shadow-[0_0px_10px_rgba(0,0,0,0.14)]  focus:border-[#1B263B] focus:ring-[#1B263B]"
-                onChange={(e) => {
-                  handleImageUpload(e);
-                }}
-              />
+              <div className="flex items-center">
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  id="file-upload"
+                  className="mt-1 mr-5 block w-contain p-2 hover:bg-gray-400 rounded-md transition ease-in duration-200 shadow-[0_0px_10px_rgba(0,0,0,0.14)]  focus:border-[#1B263B] focus:ring-[#1B263B]"
+                  onChange={(e) => {
+                    handleImageUpload(e);
+                  }}
+                />
+
+                <input
+                  id="university-specific"
+                  type="checkbox"
+                  onChange={handleUniversitySpecific}
+                />
+                <label
+                  htmlFor="university-specific"
+                  className="block text-sm font-medium text-gray-700 ml-2"
+                >
+                  University specific?
+                </label>
+              </div>
             </div>
 
             <div className="flex justify-end">

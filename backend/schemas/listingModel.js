@@ -17,10 +17,10 @@ const ListingSchema = new mongoose.Schema({
     default: "Active",
   },
   date: { type: Date, default: Date.now },
-  universitySpecific: { type: Boolean, default: false, required: false },
-  university: { type: mongoose.Schema.Types.ObjectId, ref: "University" },
-  localPickup: { type: Boolean, default: false, required: false },
-  localPickupLocation: { type: String },
+  universitySpecific: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "University",
+  },
 });
 
 export default mongoose.model("Listing", ListingSchema);

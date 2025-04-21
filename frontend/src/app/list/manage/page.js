@@ -5,6 +5,7 @@ import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 import { Trash2, Edit2, Plus } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 // Mock data for demonstration
 const mockListings = [
@@ -23,6 +24,7 @@ export default function ManageListingsPage() {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user, isLoaded } = useUser();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,16 +46,18 @@ export default function ManageListingsPage() {
     };
 
     fetchUser();
-  }, [isLoaded, user]);
+  }, [isLoaded, user, listings]);
 
-  const handleDelete = (id) => {
-    // Implement delete functionality
-    setListings(listings.filter((listing) => listing.id !== id));
-  };
-
-  const handleEdit = (id) => {
-    // Implement edit functionality
-    console.log("Edit listing:", id);
+  const handleDelete = async (id) => {
+    await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/delete-listing?itemId=${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   };
 
   return (
@@ -130,14 +134,16 @@ export default function ManageListingsPage() {
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3 ml-6">
                     <button
-                      onClick={() => handleEdit(listing.id)}
                       className="p-2 text-gray-600 hover:text-[#1B263B] hover:bg-white rounded-lg transition-colors cursor-pointer"
+                      onClick={() =>
+                        router.push(`/list/manage/edit/${listing._id}`)
+                      }
                     >
                       <Edit2 size={20} />
                     </button>
                     <button
-                      onClick={() => handleDelete(listing.id)}
                       className="p-2 text-gray-600 hover:text-red-600 hover:bg-white rounded-lg transition-colors cursor-pointer"
+                      onClick={() => handleDelete(listing._id)}
                     >
                       <Trash2 size={20} />
                     </button>

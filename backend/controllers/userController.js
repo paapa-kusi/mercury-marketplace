@@ -91,4 +91,30 @@ const getAllUniversities = async (req, res) => {
   }
 };
 
-export { signupUser, completeProfile, getProfile, getAllUniversities, getUser };
+const updateUniversity = async (req, res) => {
+  const { university, clerkId } = req.body;
+
+  try {
+    const user = await User.findOne({ clerkId });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.university = university;
+    await user.save();
+
+    res.status(200).json(university);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+export {
+  signupUser,
+  completeProfile,
+  getProfile,
+  getAllUniversities,
+  getUser,
+  updateUniversity,
+};

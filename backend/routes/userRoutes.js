@@ -5,6 +5,7 @@ import {
   getProfile,
   getAllUniversities,
   getUser,
+  updateUniversity,
 } from "../controllers/userController.js";
 import clerkWebhook from "../controllers/webhookController.js";
 
@@ -16,5 +17,6 @@ userRouter.get("/get-profile", getProfile);
 userRouter.get("/get-user", getUser);
 userRouter.get("/universities", getAllUniversities);
 userRouter.post("/webhook", clerkWebhook);
+userRouter.post("/update-university", updateUniversity);
 
 export default userRouter;
