@@ -11,7 +11,7 @@ function ItemPage({ params }) {
   const [seller, setSeller] = useState("");
   const [university, setUniversity] = useState("");
   const router = useRouter();
-  const { itemid } = params;
+  const { itemid } = use(params);
 
   useEffect(() => {
     const getListings = async () => {
@@ -50,8 +50,6 @@ function ItemPage({ params }) {
       return user;
     };
 
-
-
     const getItemAndUser = async () => {
       const user = await getUser();
       console.log(user.university);
@@ -82,27 +80,30 @@ function ItemPage({ params }) {
   }, [params]);
 
   const handleBuyNow = async () => {
-  const res = await fetch("http://localhost:5001/api/stripe/create-checkout-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      cartItems: [
-        {
-          listingId: item._id,
-          quantity: 1,
-        },
-      ],
-    }),
-  });
+    const res = await fetch(
+      "http://localhost:5001/api/stripe/create-checkout-session",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cartItems: [
+            {
+              listingId: item._id,
+              quantity: 1,
+            },
+          ],
+        }),
+      }
+    );
 
-  const data = await res.json();
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    console.error("Stripe session failed:", data);
-    alert("Something went wrong with checkout.");
-  }
-};
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      console.error("Stripe session failed:", data);
+      alert("Something went wrong with checkout.");
+    }
+  };
 
   if (!item) {
     return <Listing404 />;
@@ -142,7 +143,10 @@ function ItemPage({ params }) {
               <div className="w-full col-span-3 lg:col-span-2 inline-block text-center bg-yellow-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold">
                 ${item.price}
               </div>
-              <button className="w-full col-span-5 lg:col-span-6 flex justify-center gap-3 bg-orange-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold cursor-pointer">
+              <button
+                className="w-full col-span-5 lg:col-span-6 flex justify-center gap-3 bg-orange-400 text-black px-4 py-2 rounded-full shadow-md text-lg font-semibold cursor-pointer"
+                onClick={() => handleBuyNow()}
+              >
                 <ShoppingCart />
                 Add to cart
               </button>{" "}
