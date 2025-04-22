@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import { Listing404 } from "@/components/Listing404";
 import { useRouter } from "next/navigation";

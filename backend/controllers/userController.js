@@ -1,6 +1,8 @@
+// User management controller for handling user-related operations
 import User from "../schemas/userModel.js";
 import University from "../schemas/universityModel.js";
 
+// Creates a new user account with provided credentials
 const signupUser = async (req, res) => {
   const { email, username, password, role, university } = req.body;
   try {
@@ -19,6 +21,7 @@ const signupUser = async (req, res) => {
   }
 };
 
+// Retrieves a user's information by their Clerk ID
 const getUser = async (req, res) => {
   const { clerkId } = req.query;
   try {
@@ -33,20 +36,27 @@ const getUser = async (req, res) => {
   }
 };
 
+// Updates a user's profile with role and university information
 const completeProfile = async (req, res) => {
-  const { clerkId, role, university } = req.body;
+  const { clerkId, role, university } = await req.body;
 
   try {
     let uni = await University.findById(university);
     if (!uni) {
       return res.status(404).json({ message: "University not found" });
     }
-    const user = await User.findOneAndUpdate(
-      { clerkId: clerkId },
-      { role, university: uni._id },
-      { new: true }
-    );
+    const user = await User.findOneAndUpdate({
+      clerkId: clerkId,
+      role,
+      university: uni._id,
+      new: true,
+    });
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Adds user to university's student or professor list
     if (role === "Student") {
       await University.findByIdAndUpdate(uni._id, {
         $addToSet: { students: user._id },
@@ -57,9 +67,6 @@ const completeProfile = async (req, res) => {
       });
     }
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
     res.status(200).json({ message: "Profile updated successfully" });
   } catch (err) {
     console.error("Error updating profile: ", err);
@@ -67,6 +74,7 @@ const completeProfile = async (req, res) => {
   }
 };
 
+// Gets a user's profile information including their role and university
 const getProfile = async (req, res) => {
   const { clerkId } = req.query;
   try {
@@ -82,6 +90,7 @@ const getProfile = async (req, res) => {
   }
 };
 
+// Retrieves a list of all available universities
 const getAllUniversities = async (req, res) => {
   try {
     const universities = await University.find({}, "_id _name");
@@ -91,6 +100,7 @@ const getAllUniversities = async (req, res) => {
   }
 };
 
+// Updates a user's associated university
 const updateUniversity = async (req, res) => {
   const { university, clerkId } = req.body;
 

@@ -6,8 +6,9 @@ import StoreCard from "@/components/StoreCard";
 import CategoryCard from "@/components/CategoryCard";
 import SelectFilters from "@/components/SelectFilters";
 
-// TODO: fix filtration
+// Store page component for browsing and filtering marketplace listings
 export default function StorePage() {
+  // State management for filters and data
   const [universities, setUniversities] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -15,6 +16,7 @@ export default function StorePage() {
   const [featuredItems, setFeaturedItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch listings and universities data on component mount
   useEffect(() => {
     const getAllListings = async () => {
       const listings = await fetch(
@@ -48,6 +50,7 @@ export default function StorePage() {
     getAllListings();
   }, [featuredItems, loading]);
 
+  // Filter items based on selected criteria
   const filteredItems = featuredItems.filter((item) => {
     const matchesUniversity =
       !selectedUniversity || item.universitySpecific === selectedUniversity;
@@ -61,6 +64,7 @@ export default function StorePage() {
 
   return (
     <div>
+      {/* Hero section with search functionality */}
       <div className="relative bg-[#1B263B] text-white py-16 w-full">
         <div className="px-4 text-center">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -78,6 +82,7 @@ export default function StorePage() {
             Find the supplies you need for your academic journey
           </p>
 
+          {/* Search input field */}
           <div className="max-w-3xl mx-auto">
             <div className="relative">
               <input
@@ -93,9 +98,12 @@ export default function StorePage() {
         </div>
       </div>
 
+      {/* Main content section with filters and listings */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-12 justify-center">
+          {/* Left section with filters and listings grid */}
           <div className="lg:flex-1 max-w-3xl">
+            {/* Filter controls */}
             <SelectFilters
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
@@ -105,6 +113,7 @@ export default function StorePage() {
               universities={universities}
             />
 
+            {/* Listings grid */}
             <div className="space-y-6 md:grid grid-cols-2 gap-x-8 lg:block">
               {loading ? (
                 <h1>Loading...</h1>
@@ -116,13 +125,14 @@ export default function StorePage() {
                     key={item._id}
                     className="bg-white sm:h-[400px] lg:h-full rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                   >
-                    <StoreCard item={item} />
+                    <StoreCard item={item} fromUniversity={false} />
                   </div>
                 ))
               )}
             </div>
           </div>
 
+          {/* Right section with category navigation */}
           <div className="hidden w-[400px] lg:block ">
             <h2 className="text-2xl font-semibold mb-8 h-[41px]">
               Browse Categories

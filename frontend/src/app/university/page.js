@@ -5,15 +5,18 @@ import UniversityCard from "@/components/UniversityCard";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 
-// TODO: add loading state
+// University connection page for users to select or change their university
 export default function StorePage() {
+  // Get current user from Clerk authentication
   const { user } = useUser();
 
+  // State management for universities and user data
   const [universities, setUniversities] = useState([]);
   const [userInfo, setUserInfo] = useState("");
   const [currentUniversity, setCurrentUniversity] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // Fetch universities and user data on component mount
   useEffect(() => {
     const getAllUniversities = async () => {
       const res = await fetch(
@@ -59,6 +62,7 @@ export default function StorePage() {
     getUniversityData();
   }, [user]);
 
+  // Update user's university in the database
   const updateUniversity = async (universityId) => {
     await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/update-university`,
@@ -75,6 +79,7 @@ export default function StorePage() {
     );
   };
 
+  // Handle university change with loading state
   const changeUniversity = async (u) => {
     setLoading(true);
     setCurrentUniversity(u);
@@ -86,6 +91,7 @@ export default function StorePage() {
     <div>
       <div className="relative text-black py-12 w-full">
         <div className="px-4 text-center">
+          {/* Current university display section */}
           <div className="w-full h-[200px] mb-12 flex flex-col items-start">
             {currentUniversity ? (
               <div>
@@ -107,6 +113,8 @@ export default function StorePage() {
               </p>
             )}
           </div>
+
+          {/* Page header section */}
           <div className="flex items-center justify-center gap-4 mb-4">
             <h1 className="text-5xl font-bold">Connect to Your University</h1>
           </div>
@@ -114,6 +122,7 @@ export default function StorePage() {
             Link your account to one of the universities below
           </p>
 
+          {/* University selection grid */}
           <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-4 w-full min-h-[400px] mb-16">
             {universities.length > 0 ? (
               universities.map((u) => (
@@ -128,6 +137,8 @@ export default function StorePage() {
               <p>Loading...</p>
             )}
           </main>
+
+          {/* Add university link */}
           <div></div>
           <span className="text-md opacity-90 max-w-2xl mx-auto mb-8">
             Don't see your university?{" "}

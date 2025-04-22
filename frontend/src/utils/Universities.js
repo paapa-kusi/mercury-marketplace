@@ -1,3 +1,4 @@
+// Array of university objects with name and image URL
 const universities = [
   {
     name: "University of Florida",

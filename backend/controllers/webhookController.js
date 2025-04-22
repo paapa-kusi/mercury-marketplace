@@ -1,13 +1,13 @@
+// Handles Clerk webhook events for user management
 import User from "../schemas/userModel.js";
-import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 import University from "../schemas/universityModel.js";
 
 const clerkWebhook = async (req, res) => {
-  const { type, data } = req.body;
-  console.log(data);
+  const { type, data } = await req.body;
+  // console.log(data);
 
   try {
+    // Creates a new user in our database when a user signs up with Clerk
     if (type === "user.created") {
       const { id, email_addresses, first_name, last_name, username } = data;
       const email = email_addresses[0]?.email_address;
@@ -17,8 +17,9 @@ const clerkWebhook = async (req, res) => {
         return res.status(200).json({ message: "User already exists" });
       }
 
+      console.log(id);
       const user = await User.create({
-        email,
+        email: email,
         firstName: first_name,
         lastName: last_name,
         username: username,
@@ -30,6 +31,7 @@ const clerkWebhook = async (req, res) => {
         .status(200)
         .json({ message: `User ${user.username} successfully created` });
     }
+    // Handles user deletion and cleans up related data
     if (type === "user.deleted") {
       const { id } = data;
 
@@ -42,6 +44,7 @@ const clerkWebhook = async (req, res) => {
 
         await User.deleteOne({ _id: user._id });
 
+        // Removes user reference from their university
         if (universityId) {
           const update = {
             $pull: {
@@ -60,7 +63,7 @@ const clerkWebhook = async (req, res) => {
       }
     }
   } catch (err) {
-    console.error("Webhook error: ", err);
+    console.error("Webhook error: ", err.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };
