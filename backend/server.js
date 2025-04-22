@@ -8,6 +8,7 @@ import bcrypt from "bcryptjs";
 import userRouter from "./routes/userRoutes.js";
 import listingRouter from "./routes/listingRoutes.js";
 import universityRouter from "./routes/universityRoutes.js";
+import stripeRouter from "./routes/stripeRoutes.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/listing", listingRouter);
 app.use("/api/university", universityRouter);
+app.use("/api/stripe", stripeRouter);
 
 // mongo connection
 const uri = process.env.MONGO_URI;
