@@ -1,5 +1,7 @@
+// Filter dropdowns for university and category selection
 import React from "react";
 
+// Component providing university and category filter dropdowns
 const SelectFilters = ({
   selectedUniversity,
   setSelectedUniversity,
@@ -10,6 +12,7 @@ const SelectFilters = ({
 }) => {
   return (
     <>
+      {/* University filter dropdown */}
       <select
         value={selectedUniversity}
         onChange={(e) => {
@@ -29,6 +32,7 @@ const SelectFilters = ({
           </option>
         ))}
       </select>
+      {/* Category filter dropdown (hidden on large screens) */}
       <select
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}

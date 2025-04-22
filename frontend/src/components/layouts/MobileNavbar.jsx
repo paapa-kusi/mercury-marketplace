@@ -1,3 +1,4 @@
+// Mobile navigation component with slide-out menu
 import {
   Sheet,
   SheetContent,
@@ -11,17 +12,20 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
 
-// TODO: update nav content, use dropdowns
+// Mobile navigation menu with slide-out sheet
 const MobileNavbar = () => {
   return (
     <Sheet>
+      {/* Menu trigger button */}
       <SheetTrigger>
         <Menu size={32} className="cursor-pointer text-[#e0e1dd]" />
       </SheetTrigger>
+      {/* Slide-out menu content */}
       <SheetContent
         side="top"
         className="bg-[#1B263B] text-[#e0e1dd] flex flex-col gap-y-0"
       >
+        {/* Menu header with brand */}
         <SheetHeader>
           <SheetTitle className="text-5xl text-[#e0e1dd]">
             <Link href="/">Mecury Marketplace</Link>
@@ -31,6 +35,7 @@ const MobileNavbar = () => {
           </SheetDescription>
         </SheetHeader>
         <Separator />
+        {/* Main navigation links */}
         <nav className="flex flex-col flex-1 gap-3 py-6 px-3 text-4xl text-[#e0e1dd]">
           <Link
             href="/store"
@@ -52,6 +57,7 @@ const MobileNavbar = () => {
           </Link>
         </nav>
         <Separator />
+        {/* Authentication section */}
         <div className="flex py-6 gap-4 px-5 text-4xl items-center">
           <SignedOut>
             <div className="flex gap-x-3">

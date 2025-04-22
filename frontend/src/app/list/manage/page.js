@@ -7,7 +7,7 @@ import { Trash2, Edit2, Plus } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
-// Mock data for demonstration
+// Mock data for demonstration purposes
 const mockListings = [
   {
     id: 1,
@@ -20,12 +20,15 @@ const mockListings = [
   },
 ];
 
+// Main listing management component with CRUD operations
 export default function ManageListingsPage() {
+  // State management for listings and loading state
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user, isLoaded } = useUser();
   const router = useRouter();
 
+  // Fetch user's listings on component mount
   useEffect(() => {
     const fetchUser = async () => {
       if (!isLoaded || !user) return;
@@ -48,6 +51,7 @@ export default function ManageListingsPage() {
     fetchUser();
   }, [isLoaded, user, listings]);
 
+  // Handle listing deletion
   const handleDelete = async (id) => {
     await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/delete-listing?itemId=${id}`,
@@ -63,8 +67,10 @@ export default function ManageListingsPage() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50">
       <Header />
+      {/* Main content container */}
       <main className="w-screen xl:max-w-7xl px-18 py-12">
         <div className="bg-white flex-1 rounded-xl shadow-sm p-8">
+          {/* Page header with title and new listing button */}
           <div className="flex justify-between items-center mb-8">
             <div className="flex flex-col">
               <h1 className="text-3xl font-bold text-[#1B263B]">
@@ -83,9 +89,11 @@ export default function ManageListingsPage() {
             </button>
           </div>
 
+          {/* Conditional rendering based on loading and listings state */}
           {loading ? (
             <h1>Loading your listings</h1>
           ) : listings.length === 0 ? (
+            // Empty state with create listing prompt
             <div className="text-center py-16 bg-gray-50 rounded-lg">
               <div
                 className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 hover:bg-[#1B263B]/20 transition ease-in duration-200 flex cursor-pointer items-center justify-center"
@@ -104,12 +112,14 @@ export default function ManageListingsPage() {
               </button>
             </div>
           ) : (
+            // Listings grid with edit and delete actions
             <div className="grid gap-4">
               {listings.map((listing) => (
                 <div
                   key={listing._id}
                   className="flex items-center justify-between p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                 >
+                  {/* Listing details */}
                   <div className="flex-1">
                     <div className="flex items-center gap-4">
                       <h3 className="text-xl font-semibold text-[#1B263B]">
@@ -132,6 +142,7 @@ export default function ManageListingsPage() {
                       </span>
                     </div>
                   </div>
+                  {/* Action buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 ml-6">
                     <button
                       className="p-2 text-gray-600 hover:text-[#1B263B] hover:bg-white rounded-lg transition-colors cursor-pointer"

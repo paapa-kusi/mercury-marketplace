@@ -4,6 +4,7 @@ import React from "react";
 import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 
+// Array of frequently asked questions and their answers
 const faqs = [
   {
     question: "How do I create a listing?",
@@ -35,14 +36,17 @@ const faqs = [
   }
 ];
 
+// Main FAQs page component with question and answer display
 export default function ListingFAQPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
+      {/* Main content container */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="bg-white rounded-lg shadow-md p-8">
           <h1 className="text-3xl font-bold text-[#1B263B] mb-8">Listing FAQs</h1>
           
+          {/* FAQ items container */}
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <div key={index} className="border-b pb-6 last:border-b-0">

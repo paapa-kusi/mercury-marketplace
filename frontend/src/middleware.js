@@ -1,5 +1,6 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
+// Middleware for Clerk authentication
 export default clerkMiddleware();
 
 export const config = {

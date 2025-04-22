@@ -1,6 +1,8 @@
+// University card component displaying university information and logo
 import React from "react";
 import Image from "next/image";
 
+// Card component for displaying university details with selectable state
 const UniversityCard = ({ university, selected, onClick }) => {
   return (
     <div
@@ -9,6 +11,7 @@ const UniversityCard = ({ university, selected, onClick }) => {
         selected ? "border-[#1B263B] border-[2px]" : "border-none"
       }`}
     >
+      {/* University logo container */}
       <div className="w-[40%]">
         <div className="relative h-full w-full max-w-xs">
           <Image
@@ -19,6 +22,7 @@ const UniversityCard = ({ university, selected, onClick }) => {
           />
         </div>
       </div>
+      {/* University information section */}
       <div className="w-[60%] flex flex-col justify-center items-start">
         <h1 className="text-2xl sm:text-xl md:text-2xl text-start">
           {university._name}

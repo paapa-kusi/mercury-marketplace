@@ -1,5 +1,7 @@
+// Listing management controller for handling marketplace listings
 import Listing from "../schemas/listingModel.js";
 
+// Creates a new marketplace listing with provided details
 const createListing = async (req, res) => {
   const {
     clerkId,
@@ -33,6 +35,7 @@ const createListing = async (req, res) => {
   }
 };
 
+// Retrieves all listings for a specific user
 const getListings = async (req, res) => {
   const { clerkId } = req.query;
   try {
@@ -46,6 +49,7 @@ const getListings = async (req, res) => {
   }
 };
 
+// Retrieves all listings in the marketplace
 const getAllListings = async (req, res) => {
   try {
     const listings = await Listing.find({});
@@ -58,7 +62,7 @@ const getAllListings = async (req, res) => {
 };
 
 // `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/update-listing?id=${listingId}`,
-
+// Updates an existing listing with new information
 const updateListing = async (req, res) => {
   const { itemId } = req.query;
   const updatedItem = req.body;
@@ -78,6 +82,7 @@ const updateListing = async (req, res) => {
   }
 };
 
+// Removes a listing from the marketplace
 const deleteListing = async (req, res) => {
   const { itemId } = req.query;
 

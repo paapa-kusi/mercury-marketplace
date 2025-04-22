@@ -11,7 +11,7 @@ function ItemPage({ params }) {
   const [seller, setSeller] = useState("");
   const [university, setUniversity] = useState("");
   const router = useRouter();
-  const { itemid } = use(params);
+  const { itemid } = params;
 
   useEffect(() => {
     const getListings = async () => {
@@ -50,6 +50,8 @@ function ItemPage({ params }) {
       return user;
     };
 
+
+
     const getItemAndUser = async () => {
       const user = await getUser();
       console.log(user.university);
@@ -78,6 +80,29 @@ function ItemPage({ params }) {
 
     getItemAndUser();
   }, [params]);
+
+  const handleBuyNow = async () => {
+  const res = await fetch("http://localhost:5001/api/stripe/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      cartItems: [
+        {
+          listingId: item._id,
+          quantity: 1,
+        },
+      ],
+    }),
+  });
+
+  const data = await res.json();
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    console.error("Stripe session failed:", data);
+    alert("Something went wrong with checkout.");
+  }
+};
 
   if (!item) {
     return <Listing404 />;

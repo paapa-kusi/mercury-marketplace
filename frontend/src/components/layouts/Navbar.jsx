@@ -14,6 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+// Navigation menu items for listings section
 const components = [
   {
     title: "Create a Listing",
@@ -35,16 +36,19 @@ const components = [
   },
 ];
 
+// Main navigation component with dropdown menus
 export function Navbar() {
   return (
     <NavigationMenu delayDuration={75}>
       <NavigationMenuList>
+        {/* Store navigation with dropdown */}
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-normal">
             Store
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 w-3xl xl:w-4xl h-[350px] lg:grid-cols-[.5fr_1fr]">
+              {/* Featured listings section */}
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <a
@@ -60,6 +64,7 @@ export function Navbar() {
                   </a>
                 </NavigationMenuLink>
               </li>
+              {/* Store navigation links */}
               <ListItem href="/store" title="Storefront" className="h-full">
                 Visit the catalog of currently listing materials
               </ListItem>
@@ -73,6 +78,7 @@ export function Navbar() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+        {/* Listings navigation with dropdown */}
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-normal">
             Listings
@@ -92,6 +98,7 @@ export function Navbar() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+        {/* University navigation link */}
         <NavigationMenuItem>
           <Link href="/university" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -104,6 +111,7 @@ export function Navbar() {
   );
 }
 
+// List item component for navigation menu
 const ListItem = ({ className, title, children, ...props }, ref) => {
   return (
     <li>
