@@ -34,18 +34,23 @@ const getUser = async (req, res) => {
 };
 
 const completeProfile = async (req, res) => {
-  const { clerkId, role, university } = req.body;
+  const { clerkId, role, university } = await req.body;
 
   try {
     let uni = await University.findById(university);
     if (!uni) {
       return res.status(404).json({ message: "University not found" });
     }
-    const user = await User.findOneAndUpdate(
-      { clerkId: clerkId },
-      { role, university: uni._id },
-      { new: true }
-    );
+    const user = await User.findOneAndUpdate({
+      clerkId: clerkId,
+      role,
+      university: uni._id,
+      new: true,
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
     if (role === "Student") {
       await University.findByIdAndUpdate(uni._id, {
@@ -57,9 +62,6 @@ const completeProfile = async (req, res) => {
       });
     }
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
     res.status(200).json({ message: "Profile updated successfully" });
   } catch (err) {
     console.error("Error updating profile: ", err);

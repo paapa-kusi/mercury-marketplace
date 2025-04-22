@@ -1,11 +1,9 @@
 import User from "../schemas/userModel.js";
-import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 import University from "../schemas/universityModel.js";
 
 const clerkWebhook = async (req, res) => {
-  const { type, data } = req.body;
-  console.log(data);
+  const { type, data } = await req.body;
+  // console.log(data);
 
   try {
     if (type === "user.created") {
@@ -17,8 +15,9 @@ const clerkWebhook = async (req, res) => {
         return res.status(200).json({ message: "User already exists" });
       }
 
+      console.log(id);
       const user = await User.create({
-        email,
+        email: email,
         firstName: first_name,
         lastName: last_name,
         username: username,
@@ -60,7 +59,7 @@ const clerkWebhook = async (req, res) => {
       }
     }
   } catch (err) {
-    console.error("Webhook error: ", err);
+    console.error("Webhook error: ", err.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };

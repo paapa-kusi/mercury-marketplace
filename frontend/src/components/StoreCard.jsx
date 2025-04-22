@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 
-const StoreCard = ({ item }) => {
+const StoreCard = ({ item, fromUniversity }) => {
   return (
     <a
       className="flex flex-col pt-6 lg:pt-0 lg:flex-row hover:cursor-pointer"
-      href={`store/${item._id}`}
+      href={fromUniversity ? `${item._id}` : `store/${item._id}`}
     >
       <div className="relative w-48 h-48 self-center">
         <Image

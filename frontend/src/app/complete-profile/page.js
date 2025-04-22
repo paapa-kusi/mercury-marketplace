@@ -37,7 +37,7 @@ export default function CompleteProfilePage() {
       );
       const data = await response.json();
 
-      if (data.role && data.university) {
+      if (data.university) {
         router.push("/");
       }
     };

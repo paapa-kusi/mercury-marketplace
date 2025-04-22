@@ -94,7 +94,7 @@ export default function StorePage() {
                             key={item._id}
                             className="bg-white sm:h-[400px] lg:h-full rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                           >
-                            <StoreCard item={item} />
+                            <StoreCard item={item} fromUniversity />
                           </div>
                         ))}
                       </div>
