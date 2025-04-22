@@ -103,7 +103,9 @@ function ItemPage({ params }) {
             <h1 className="text-4xl font-medium pt-5 pb-1">{item.title}</h1>
             <p className="text-gray-600">
               Sold by: {seller.username}
-              {university ? `, ${university._name}` : "No university specified"}
+              {university
+                ? `, ${university._name}`
+                : ", No university specified"}
             </p>
             <h3 className="text-gray-500">
               {new Date(Date.parse(item.date)).toDateString()}
