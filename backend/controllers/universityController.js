@@ -1,5 +1,7 @@
+// University management controller for handling university-related operations
 import University from "../schemas/universityModel.js";
 
+// Retrieves a specific university by its ID
 const getUniversity = async (req, res) => {
   const { universityId } = req.query;
 
@@ -15,6 +17,7 @@ const getUniversity = async (req, res) => {
   }
 };
 
+// Retrieves all universities in the system
 const getAllUniversities = async (req, res) => {
   try {
     const universities = await University.find({});
@@ -28,6 +31,7 @@ const getAllUniversities = async (req, res) => {
   }
 };
 
+// Creates a new university with provided details
 const createUniversity = async (req, res) => {
   const { _name, location, description, logo } = req.body;
   try {

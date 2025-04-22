@@ -6,10 +6,13 @@ import { useRouter } from "next/navigation";
 import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 
+// Main profile completion component with form handling
 export default function CompleteProfilePage() {
+  // Get current user from Clerk authentication
   const { user, isLoaded } = useUser();
   const router = useRouter();
 
+  // State management for form data and UI
   const [formData, setFormData] = useState({
     role: "",
     university: "",
@@ -17,6 +20,7 @@ export default function CompleteProfilePage() {
   const [universities, setUniversities] = useState([]);
   const [success, setSuccess] = useState(false);
 
+  // Fetch available universities on component mount
   useEffect(() => {
     const fetchUniversities = async () => {
       const res = await fetch(
@@ -28,6 +32,7 @@ export default function CompleteProfilePage() {
     fetchUniversities();
   }, []);
 
+  // Check if user already has a completed profile
   useEffect(() => {
     const checkUserProfile = async () => {
       if (!isLoaded || !user) return;
@@ -44,6 +49,7 @@ export default function CompleteProfilePage() {
     checkUserProfile();
   }, [isLoaded, user, router]);
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -52,6 +58,7 @@ export default function CompleteProfilePage() {
     }));
   };
 
+  // Handle form submission and profile completion
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(
@@ -77,13 +84,16 @@ export default function CompleteProfilePage() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50">
       <Header />
+      {/* Main form container */}
       <div className="flex-1 w-screen xl:max-w-3xl px-6 py-12">
         <div className="bg-white rounded-lg shadow-md p-8">
           <h1 className="text-3xl font-bold text-[#1B263B] mb-8">
             Complete Your Profile
           </h1>
 
+          {/* Profile completion form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Role selection dropdown */}
             <div>
               <label
                 htmlFor="role"
@@ -105,6 +115,7 @@ export default function CompleteProfilePage() {
               </select>
             </div>
 
+            {/* University selection dropdown */}
             <div>
               <label
                 htmlFor="university"
@@ -129,6 +140,7 @@ export default function CompleteProfilePage() {
               </select>
             </div>
 
+            {/* Submit button */}
             <div className="flex justify-end">
               <button
                 type="submit"
@@ -138,6 +150,7 @@ export default function CompleteProfilePage() {
               </button>
             </div>
 
+            {/* Success message */}
             {success && (
               <p className="text-green-600 text-sm mt-2">
                 ✅ Profile updated! Redirecting...

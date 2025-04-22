@@ -1,5 +1,6 @@
 import { universities } from "./Universities";
 
+// Array of featured items with details
 export const featuredItems = [
   {
     id: 1,

@@ -4,12 +4,14 @@ import React from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
+// Main information section component with conditional sign-up button
 export default function HomeInfo() {
   const { user } = useUser();
   const router = useRouter();
 
   return (
     <div>
+      {/* Problem statement section */}
       <section id="about1" className="py-20">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">The Core Problem</h2>
@@ -18,6 +20,7 @@ export default function HomeInfo() {
             for their various classes. These items are often cost-prohibitive,
             underutilized, and lack a dedicated marketplace.
           </p>
+          {/* Key problem points */}
           <ul className="list-none text-lg text-gray-600 dark:text-gray-300 space-y-2">
             <li>
               Cost Prohibitive: Retail prices are often too high for students on
@@ -34,9 +37,11 @@ export default function HomeInfo() {
         </div>
       </section>
 
+      {/* User stories section with student and professor examples */}
       <section className="py-20 dark:bg-gray-900 rounded-2xl">
         <h2 className="text-4xl font-bold text-center mb-12">User Stories</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Student story card */}
           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
             <h3 className="text-xl font-semibold mb-4">Student's Story</h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -45,6 +50,7 @@ export default function HomeInfo() {
               making course materials more accessible while saving money.
             </p>
           </div>
+          {/* Professor story card */}
           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
             <h3 className="text-xl font-semibold mb-4">Professor's Story</h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -57,9 +63,11 @@ export default function HomeInfo() {
         </div>
       </section>
 
+      {/* Solution features section with key benefits */}
       <section className="py-20">
         <h2 className="text-4xl font-bold text-center mb-12">Our Solution</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Feature cards */}
           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
             <h3 className="text-xl font-semibold mb-4">University-Centric</h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -91,12 +99,14 @@ export default function HomeInfo() {
         </div>
       </section>
 
+      {/* Call to action section with sign-up button */}
       <section className="py-20 dark:bg-gray-900">
         <div className="text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
             Join us at Mercury Marketplace
           </p>
+          {/* Conditional sign-up button based on user state */}
           <button
             className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
             onClick={() => {

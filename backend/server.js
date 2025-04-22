@@ -1,3 +1,4 @@
+// Main server file for the Mercury Marketplace backend
 // imports
 import express from "express";
 import jwt from "jsonwebtoken";
@@ -9,10 +10,13 @@ import userRouter from "./routes/userRoutes.js";
 import listingRouter from "./routes/listingRoutes.js";
 import universityRouter from "./routes/universityRoutes.js";
 
+// Load environment variables from .env file
 dotenv.config();
 
-// express app
+// Initialize Express application
 const app = express();
+
+// Configure CORS for cross-origin requests
 app.use(
   cors({
     origin: "*",
@@ -20,18 +24,22 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// Enable JSON parsing for request bodies
 app.use(express.json());
 
+// Register API routes
 app.use("/api/user", userRouter);
 app.use("/api/listing", listingRouter);
 app.use("/api/university", universityRouter);
 
-// mongo connection
+// Connect to MongoDB database
 const uri = process.env.MONGO_URI;
 mongoose
   .connect(uri)
   .then(() => {
     console.log("Connected to MongoDB");
+    // Start server on port 5001
     const PORT = 5001;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })

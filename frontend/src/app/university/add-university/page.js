@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 
+// Main university creation form component
 export default function UniversityForm() {
   const router = useRouter();
+  // State management for university form data
   const [formData, setFormData] = useState({
     _name: "",
     location: "",
@@ -14,6 +16,7 @@ export default function UniversityForm() {
     logo: "",
   });
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -22,6 +25,7 @@ export default function UniversityForm() {
     }));
   };
 
+  // Handle university logo upload to Cloudinary
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     const image = new FormData();
@@ -44,6 +48,7 @@ export default function UniversityForm() {
     }));
   };
 
+  // Handle form submission and university creation
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,13 +74,16 @@ export default function UniversityForm() {
 
   return (
     <div className="flex flex-col items-center min-h-screen">
+      {/* Main form container */}
       <div className="flex-1 w-screen xl:max-w-4xl px-8 py-12">
         <div className="bg-white rounded-lg shadow-md p-8">
           <h1 className="text-3xl font-bold text-[#1B263B] mb-8">
             Create a New University
           </h1>
 
+          {/* University creation form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* University name input */}
             <div>
               <label
                 htmlFor="_name"
@@ -94,6 +102,7 @@ export default function UniversityForm() {
               />
             </div>
 
+            {/* Location input */}
             <div>
               <label
                 htmlFor="location"
@@ -112,6 +121,7 @@ export default function UniversityForm() {
               />
             </div>
 
+            {/* Description textarea */}
             <div>
               <label
                 htmlFor="description"
@@ -130,6 +140,7 @@ export default function UniversityForm() {
               />
             </div>
 
+            {/* Logo upload input */}
             <div>
               <label
                 htmlFor="file-upload"
@@ -148,6 +159,7 @@ export default function UniversityForm() {
               />
             </div>
 
+            {/* Submit button */}
             <div className="flex justify-end">
               <button
                 type="submit"

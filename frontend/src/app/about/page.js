@@ -3,10 +3,11 @@ import React from "react";
 import Footer from "@/components/layouts/Footer";
 import Image from "next/image";
 
+// Main about page component with company information sections
 export default function AboutPage() {
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero section with company logo and tagline */}
       <div className="relative bg-[#1B263B] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -26,9 +27,9 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main content section with company information */}
       <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Problem & Solution */}
+        {/* Mission statement section */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 text-[#1B263B]">Our Mission</h2>
           <p className="text-lg text-gray-700 mb-6">
@@ -37,7 +38,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* Founders */}
+        {/* Team members section */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 text-[#1B263B]">Founders</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -56,7 +57,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Requirements */}
+        {/* Technical features section */}
         <section>
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold mb-4 text-[#1B263B]">Technical Features</h3>

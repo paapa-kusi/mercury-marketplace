@@ -6,10 +6,13 @@ import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 import { useUser } from "@clerk/nextjs";
 
-// TODO: redirect user to complete sign up if not done
+// Create listing page component for adding new marketplace items
 export default function CreateListingPage() {
+  // Get current user from Clerk authentication
   const { user, isLoaded } = useUser();
   const router = useRouter();
+  
+  // State management for user info and form data
   const [userInfo, setUserInfo] = useState("");
   const [formData, setFormData] = useState({
     clerkId: null,
@@ -23,6 +26,7 @@ export default function CreateListingPage() {
     date: Date.now,
   });
 
+  // Fetch user information on component mount
   useEffect(() => {
     const fetchUser = async () => {
       if (!isLoaded || !user) return;
@@ -48,10 +52,9 @@ export default function CreateListingPage() {
     fetchUser();
   }, [isLoaded, user]);
 
+  // Handle form submission and create new listing
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement listing creation
-
     console.log("Form submitted:", formData);
     await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/listing/create-listing`,
@@ -66,6 +69,7 @@ export default function CreateListingPage() {
     router.push("/list/manage");
   };
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -74,6 +78,7 @@ export default function CreateListingPage() {
     }));
   };
 
+  // Handle image upload to Cloudinary
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     const image = new FormData();
@@ -96,6 +101,7 @@ export default function CreateListingPage() {
     }));
   };
 
+  // Handle university-specific listing toggle
   const handleUniversitySpecific = () => {
     setFormData((prev) => ({
       ...prev,
@@ -106,13 +112,16 @@ export default function CreateListingPage() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50">
       <Header />
+      {/* Main form container */}
       <div className="flex-1 w-screen xl:max-w-7xl px-18 py-12">
         <div className="bg-white rounded-lg shadow-md p-8">
           <h1 className="text-3xl font-bold text-[#1B263B] mb-8">
             Create a New Listing
           </h1>
 
+          {/* Listing creation form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Title input field */}
             <div>
               <label
                 htmlFor="title"
@@ -131,6 +140,7 @@ export default function CreateListingPage() {
               />
             </div>
 
+            {/* Description textarea */}
             <div>
               <label
                 htmlFor="description"
@@ -149,6 +159,7 @@ export default function CreateListingPage() {
               />
             </div>
 
+            {/* Price input field */}
             <div>
               <label
                 htmlFor="price"
@@ -170,6 +181,7 @@ export default function CreateListingPage() {
               />
             </div>
 
+            {/* Category selection dropdown */}
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Category
@@ -189,6 +201,8 @@ export default function CreateListingPage() {
                 <option value="Miscellaneous">Miscellaneous</option>
               </select>
             </div>
+
+            {/* Image upload and university-specific options */}
             <div>
               <label
                 for="file-upload"
@@ -208,6 +222,7 @@ export default function CreateListingPage() {
                   }}
                 />
 
+                {/* University-specific toggle */}
                 <input
                   id="university-specific"
                   type="checkbox"
@@ -222,6 +237,7 @@ export default function CreateListingPage() {
               </div>
             </div>
 
+            {/* Submit button */}
             <div className="flex justify-end">
               <button
                 type="submit"
